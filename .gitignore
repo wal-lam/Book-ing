@@ -5,7 +5,8 @@ target/
 src/main/resources/application-local.yml
 
 # IDE 설정
-.vscode/
+.vscode/*
+!.vscode/settings.json
 .idea/
 *.iml
 

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 관리 | Book-ing 관리자</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <header class="header is-admin">
+        <div class="header-inner">
+            <a class="header-logo" href="/admin/status.html">Book-ing<span class="header-admin-mark">관리자</span></a>
+            <nav class="header-nav" aria-label="관리자 메뉴">
+                <a href="/admin/status.html">실시간 현황</a>
+                <a href="/admin/rooms.html">열람실·좌석 관리</a>
+                <a href="/admin/members.html" aria-current="page">회원 관리</a>
+            </nav>
+            <div class="header-user">
+                <span id="header-name">관리자</span>
+                <button class="btn btn-outline btn-small" type="button" id="logout-btn">로그아웃</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 class="page-title">회원 관리</h1>
+
+        <!-- 더미 데이터: 10단계에서 /api/admin/members 응답으로 채움 -->
+        <div class="table-wrap">
+            <table class="table">
+                <caption class="blind">회원 목록</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">아이디</th>
+                        <th scope="col">이름</th>
+                        <th scope="col">이메일</th>
+                        <th scope="col">가입일</th>
+                        <th scope="col">상태</th>
+                        <th scope="col">관리</th>
+                    </tr>
+                </thead>
+                <tbody id="member-list">
+                    <tr>
+                        <td data-label="아이디">admin</td>
+                        <td data-label="이름">관리자</td>
+                        <td data-label="이메일">admin@example.com</td>
+                        <td data-label="가입일">2026-11-01</td>
+                        <td data-label="상태"><span class="badge badge-primary">관리자</span></td>
+                        <td data-label="관리">-</td>
+                    </tr>
+                    <tr>
+                        <td data-label="아이디">gildong</td>
+                        <td data-label="이름">홍길동</td>
+                        <td data-label="이메일">gildong@example.com</td>
+                        <td data-label="가입일">2026-11-10</td>
+                        <td data-label="상태"><span class="badge">정상</span></td>
+                        <td data-label="관리"><button class="btn btn-danger btn-small" type="button" data-member-id="2">이용 정지</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="아이디">chulsoo</td>
+                        <td data-label="이름">김철수</td>
+                        <td data-label="이메일">chulsoo@example.com</td>
+                        <td data-label="가입일">2026-11-12</td>
+                        <td data-label="상태"><span class="badge badge-danger">정지 ~ 11-27</span></td>
+                        <td data-label="관리"><button class="btn btn-outline btn-small" type="button" data-member-id="3">정지 해제</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="아이디">younghee</td>
+                        <td data-label="이름">이영희</td>
+                        <td data-label="이메일">younghee@example.com</td>
+                        <td data-label="가입일">2026-11-15</td>
+                        <td data-label="상태"><span class="badge">정상</span></td>
+                        <td data-label="관리"><button class="btn btn-danger btn-small" type="button" data-member-id="4">이용 정지</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- 이용 정지 팝업: 확인하려면 dialog 태그에 open 속성을 잠시 추가 -->
+    <dialog class="dialog" id="suspend-dialog">
+        <form id="suspend-form" method="dialog">
+            <h2 class="dialog-title">이용 정지</h2>
+            <p class="dialog-desc"><span id="suspend-member">홍길동 (gildong)</span> 회원의 정지 기간을 선택하세요. 정지 기간에는 좌석을 배정받을 수 없습니다.</p>
+
+            <fieldset class="option-group">
+                <legend class="blind">정지 기간</legend>
+                <label>
+                    <input type="radio" name="days" value="1" checked>
+                    <span>1일</span>
+                </label>
+                <label>
+                    <input type="radio" name="days" value="3">
+                    <span>3일</span>
+                </label>
+                <label>
+                    <input type="radio" name="days" value="7">
+                    <span>7일</span>
+                </label>
+                <label>
+                    <input type="radio" name="days" value="30">
+                    <span>30일</span>
+                </label>
+            </fieldset>
+
+            <div class="dialog-actions">
+                <button class="btn btn-outline" type="button" id="suspend-cancel">취소</button>
+                <button class="btn btn-danger" type="submit">정지</button>
+            </div>
+        </form>
+    </dialog>
+</body>
+</html>

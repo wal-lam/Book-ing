@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실시간 현황 | Book-ing 관리자</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <header class="header is-admin">
+        <div class="header-inner">
+            <a class="header-logo" href="/admin/status.html">Book-ing<span class="header-admin-mark">관리자</span></a>
+            <nav class="header-nav" aria-label="관리자 메뉴">
+                <a href="/admin/status.html" aria-current="page">실시간 현황</a>
+                <a href="/admin/rooms.html">열람실·좌석 관리</a>
+                <a href="/admin/members.html">회원 관리</a>
+            </nav>
+            <div class="header-user">
+                <span id="header-name">관리자</span>
+                <button class="btn btn-outline btn-small" type="button" id="logout-btn">로그아웃</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 class="page-title">실시간 현황</h1>
+
+        <div class="admin-toolbar">
+            <label class="form-label" for="room-select">열람실</label>
+            <select class="form-select" id="room-select">
+                <option value="1">제1열람실</option>
+                <option value="2">제2열람실</option>
+                <option value="3">노트북열람실 (운영 중지)</option>
+            </select>
+            <p class="seat-updated">10초마다 자동 갱신 · 마지막 갱신 <span id="updated-time">14:32:10</span></p>
+        </div>
+
+        <!-- 더미 데이터: 8단계에서 /api/admin/rooms/{roomId}/status 응답으로 채움 -->
+        <ul class="stat-list">
+            <li><span>전체 좌석</span><strong id="stat-total">24</strong></li>
+            <li><span>사용 중</span><strong id="stat-in-use">8</strong></li>
+            <li><span>빈 자리</span><strong id="stat-available">14</strong></li>
+            <li><span>사용 중지</span><strong id="stat-inactive">2</strong></li>
+        </ul>
+
+        <ul class="seat-legend">
+            <li><span class="seat seat-available"></span>빈 자리</li>
+            <li><span class="seat seat-in-use"></span>사용 중</li>
+            <li><span class="seat seat-inactive"></span>사용 중지</li>
+        </ul>
+
+        <!-- 관리자 배치도는 보기 전용이라 button이 아닌 span 사용 -->
+        <div class="seat-map-wrap">
+            <div class="seat-map" id="seat-map" data-mode="admin"></div>
+        </div>
+
+        <h2 class="section-title">이용 중인 좌석</h2>
+
+        <div class="table-wrap">
+            <table class="table">
+                <caption class="blind">이용 중인 좌석 목록</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">좌석</th>
+                        <th scope="col">회원</th>
+                        <th scope="col">시작</th>
+                        <th scope="col">종료 예정</th>
+                        <th scope="col">연장</th>
+                        <th scope="col">관리</th>
+                    </tr>
+                </thead>
+                <tbody id="usage-list">
+                    <tr>
+                        <td data-label="좌석">A-2</td>
+                        <td data-label="회원">김철수 (chulsoo)</td>
+                        <td data-label="시작">12:10</td>
+                        <td data-label="종료 예정">16:10</td>
+                        <td data-label="연장">0회</td>
+                        <td data-label="관리"><button class="btn btn-danger btn-small" type="button" data-usage-id="31">강제 반납</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="좌석">A-3</td>
+                        <td data-label="회원">이영희 (younghee)</td>
+                        <td data-label="시작">13:00</td>
+                        <td data-label="종료 예정">15:00</td>
+                        <td data-label="연장">0회</td>
+                        <td data-label="관리"><button class="btn btn-danger btn-small" type="button" data-usage-id="32">강제 반납</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="좌석">B-4</td>
+                        <td data-label="회원">홍길동 (gildong)</td>
+                        <td data-label="시작">13:00</td>
+                        <td data-label="종료 예정">15:00</td>
+                        <td data-label="연장">0회</td>
+                        <td data-label="관리"><button class="btn btn-danger btn-small" type="button" data-usage-id="33">강제 반납</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="/js/dummy-seats.js"></script>
+</body>
+</html>

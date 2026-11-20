@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>열람실 목록 | Book-ing</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <a class="header-logo" href="/rooms.html">Book-ing</a>
+            <nav class="header-nav" aria-label="주 메뉴">
+                <a href="/rooms.html" aria-current="page">열람실</a>
+                <a href="/my-usage.html">내 이용 현황</a>
+                <a href="/history.html">이용 이력</a>
+            </nav>
+            <div class="header-user">
+                <span id="header-name">홍길동</span>
+                <button class="btn btn-outline btn-small" type="button" id="logout-btn">로그아웃</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 class="page-title">열람실 목록</h1>
+
+        <!-- 더미 데이터: 3단계에서 /api/rooms 응답으로 채움 -->
+        <ul class="room-list" id="room-list">
+            <li>
+                <a class="room-card" href="/seats.html?roomId=1">
+                    <div class="room-card-head">
+                        <h2 class="room-name">제1열람실</h2>
+                    </div>
+                    <dl class="room-info">
+                        <div><dt>위치</dt><dd>중앙도서관 3층</dd></div>
+                        <div><dt>운영시간</dt><dd>06:00 ~ 23:00</dd></div>
+                    </dl>
+                    <p class="room-remain">잔여 <strong>24</strong> / 60석</p>
+                </a>
+            </li>
+            <li>
+                <a class="room-card" href="/seats.html?roomId=2">
+                    <div class="room-card-head">
+                        <h2 class="room-name">제2열람실</h2>
+                    </div>
+                    <dl class="room-info">
+                        <div><dt>위치</dt><dd>중앙도서관 4층</dd></div>
+                        <div><dt>운영시간</dt><dd>09:00 ~ 22:00</dd></div>
+                    </dl>
+                    <p class="room-remain">잔여 <strong>0</strong> / 40석</p>
+                </a>
+            </li>
+            <li>
+                <div class="room-card is-inactive">
+                    <div class="room-card-head">
+                        <h2 class="room-name">노트북열람실</h2>
+                        <span class="badge badge-danger">운영 중지</span>
+                    </div>
+                    <dl class="room-info">
+                        <div><dt>위치</dt><dd>중앙도서관 2층</dd></div>
+                        <div><dt>운영시간</dt><dd>09:00 ~ 21:00</dd></div>
+                    </dl>
+                    <p class="room-remain">잔여 <strong>-</strong> / 30석</p>
+                </div>
+            </li>
+        </ul>
+    </main>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>좌석 배치도 | Book-ing</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <a class="header-logo" href="/rooms.html">Book-ing</a>
+            <nav class="header-nav" aria-label="주 메뉴">
+                <a href="/rooms.html" aria-current="true">열람실</a>
+                <a href="/my-usage.html">내 이용 현황</a>
+                <a href="/history.html">이용 이력</a>
+            </nav>
+            <div class="header-user">
+                <span id="header-name">홍길동</span>
+                <button class="btn btn-outline btn-small" type="button" id="logout-btn">로그아웃</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <a class="back-link" href="/rooms.html">&lt; 열람실 목록</a>
+
+        <div class="seat-page-head">
+            <div>
+                <h1 class="page-title" id="room-name">제1열람실</h1>
+                <p class="seat-page-info" id="room-info">중앙도서관 3층 · 06:00 ~ 23:00</p>
+            </div>
+            <p class="seat-updated">10초마다 자동 갱신 · 마지막 갱신 <span id="updated-time">14:32:10</span></p>
+        </div>
+
+        <ul class="seat-legend">
+            <li><span class="seat seat-available"></span>빈 자리</li>
+            <li><span class="seat seat-in-use"></span>사용 중</li>
+            <li><span class="seat seat-mine"></span>내 자리</li>
+            <li><span class="seat seat-inactive"></span>사용 중지</li>
+        </ul>
+
+        <!-- 더미 데이터: 3단계에서 /api/rooms/{roomId}/seats 응답으로 채움 -->
+        <div class="seat-map-wrap">
+            <div class="seat-map" id="seat-map" data-mode="user"></div>
+        </div>
+    </main>
+
+    <script src="/js/dummy-seats.js"></script>
+
+    <!-- 좌석 선택 팝업: 확인하려면 dialog 태그에 open 속성을 잠시 추가 -->
+    <dialog class="dialog" id="assign-dialog">
+        <form id="assign-form" method="dialog">
+            <h2 class="dialog-title"><span id="dialog-seat-no">A-1</span> 좌석</h2>
+            <p class="dialog-desc">이용 시간을 선택하세요. 운영 종료 시각을 넘으면 종료 시각까지만 이용할 수 있습니다.</p>
+
+            <fieldset class="option-group">
+                <legend class="blind">이용 시간</legend>
+                <label>
+                    <input type="radio" name="hours" value="2" checked>
+                    <span>2시간</span>
+                </label>
+                <label>
+                    <input type="radio" name="hours" value="4">
+                    <span>4시간</span>
+                </label>
+            </fieldset>
+
+            <div class="dialog-actions">
+                <button class="btn btn-outline" type="button" id="dialog-cancel">취소</button>
+                <button class="btn btn-primary" type="submit">이용 시작</button>
+            </div>
+        </form>
+    </dialog>
+</body>
+</html>

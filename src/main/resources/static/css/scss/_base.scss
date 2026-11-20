@@ -1,0 +1,195 @@
+@use 'tokens' as *;
+
+body {
+    font-family: 'Pretendard', -apple-system, 'Malgun Gothic', sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    color: $color-text;
+    background: $color-bg;
+}
+
+// 화면에는 안 보이고 스크린리더만 읽는 텍스트
+.blind {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+// 상단 헤더
+.header {
+    background: $color-surface;
+    border-bottom: 1px solid $color-border;
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    max-width: 1080px;
+    height: 60px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header-logo {
+    font-size: 20px;
+    font-weight: 700;
+    color: $color-primary;
+}
+
+.header-nav {
+    display: flex;
+    gap: 24px;
+
+    a {
+        font-weight: 500;
+        color: $color-text-sub;
+
+        &:hover {
+            color: $color-text;
+        }
+
+        &[aria-current] {
+            font-weight: 700;
+            color: $color-primary;
+        }
+    }
+}
+
+// 관리자 화면 헤더: 남색 바탕으로 사용자 화면과 구분
+.header.is-admin {
+    background: $color-primary;
+    border-bottom-color: $color-primary-dark;
+    color: #ffffff;
+
+    .header-logo {
+        color: #ffffff;
+    }
+
+    .header-nav a {
+        color: #b8c4d4;
+
+        &:hover,
+        &[aria-current] {
+            color: #ffffff;
+        }
+    }
+}
+
+.header-admin-mark {
+    margin-left: 6px;
+    padding: 1px 6px;
+    font-size: 12px;
+    font-weight: 600;
+    vertical-align: middle;
+    border: 1px solid #ffffff;
+    border-radius: 2px;
+}
+
+.header-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+    font-size: 14px;
+}
+
+// 본문
+.container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 32px 20px;
+}
+
+.page-title {
+    margin-bottom: 24px;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+// 로그인, 회원가입 화면
+.auth-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.auth-box {
+    width: 400px;
+    padding: 40px 32px;
+    background: $color-surface;
+    border: 1px solid $color-border;
+    border-radius: 4px;
+}
+
+.auth-title {
+    font-size: 26px;
+    font-weight: 700;
+    text-align: center;
+    color: $color-primary;
+}
+
+.auth-desc {
+    margin-top: 4px;
+    margin-bottom: 32px;
+    font-size: 14px;
+    text-align: center;
+    color: $color-text-sub;
+}
+
+.auth-link {
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center;
+    color: $color-text-sub;
+
+    a {
+        color: $color-primary;
+        font-weight: 600;
+        text-decoration: underline;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-inner {
+        flex-wrap: wrap;
+        gap: 0;
+        height: auto;
+        padding: 12px 16px 0;
+    }
+
+    // 모바일에서는 메뉴를 로고 아래 한 줄로 내림
+    .header-nav {
+        order: 3;
+        width: 100%;
+        margin-top: 12px;
+        gap: 20px;
+
+        a {
+            padding-bottom: 10px;
+        }
+    }
+
+    .container {
+        padding: 24px 16px;
+    }
+
+    .page-title {
+        font-size: 20px;
+    }
+
+    .auth-page {
+        align-items: flex-start;
+        padding-top: 60px;
+    }
+
+    .auth-box {
+        width: 100%;
+        padding: 32px 20px;
+    }
+}

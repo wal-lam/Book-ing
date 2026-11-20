@@ -1,0 +1,145 @@
+@use 'tokens' as *;
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: $color-text-sub;
+
+    &:hover {
+        color: $color-text;
+    }
+}
+
+.seat-page-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    margin-bottom: 20px;
+
+    .page-title {
+        margin-bottom: 4px;
+    }
+}
+
+.seat-page-info {
+    font-size: 14px;
+    color: $color-text-sub;
+}
+
+.seat-updated {
+    font-size: 13px;
+    color: $color-text-sub;
+}
+
+// 범례
+.seat-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 16px;
+    font-size: 13px;
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .seat {
+        width: 18px;
+        height: 18px;
+        cursor: default;
+    }
+}
+
+// 배치도: 좌석마다 grid-column(pos_x), grid-row(pos_y)를 지정
+.seat-map-wrap {
+    overflow-x: auto;
+    padding: 24px;
+    background: $color-surface;
+    border: 1px solid $color-border;
+    border-radius: 4px;
+}
+
+.seat-map {
+    display: grid;
+    grid-auto-columns: 56px;
+    grid-auto-rows: 56px;
+    gap: 8px;
+    width: max-content;
+    margin: 0 auto;
+}
+
+.seat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid $color-border;
+    border-radius: 2px;
+}
+
+.seat-available {
+    color: $color-text;
+    background: $seat-available;
+    border-color: $seat-available-border;
+
+    &:hover {
+        border-color: $color-primary;
+        box-shadow: inset 0 0 0 1px $color-primary;
+    }
+}
+
+.seat-in-use {
+    color: $seat-in-use-text;
+    background: $seat-in-use;
+    border-color: $seat-in-use;
+    cursor: not-allowed;
+}
+
+.seat-mine {
+    color: $seat-mine-text;
+    background: $seat-mine;
+    border: 2px solid $seat-mine-border;
+    cursor: default;
+}
+
+// 사용 중지는 색이 아닌 사선 무늬로 구분
+.seat-inactive {
+    color: $color-text-sub;
+    background: repeating-linear-gradient(
+        -45deg,
+        $seat-inactive,
+        $seat-inactive 4px,
+        $seat-inactive-line 4px,
+        $seat-inactive-line 5px
+    );
+    border-style: dashed;
+    border-color: $color-text-sub;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .seat-page-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .seat-map-wrap {
+        padding: 16px;
+    }
+
+    .seat-map {
+        grid-auto-columns: 44px;
+        grid-auto-rows: 44px;
+        gap: 6px;
+    }
+
+    .seat {
+        font-size: 12px;
+    }
+}

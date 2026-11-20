@@ -1,0 +1,12 @@
+{
+    "liveSassCompile.settings.includeItems": ["/src/main/resources/static/css/scss/main.scss"],
+    "liveSassCompile.settings.formats": [
+        {
+            "format": "expanded",
+            "extensionName": ".css",
+            "savePath": "/src/main/resources/static/css"
+        }
+    ],
+    "liveSassCompile.settings.generateMap": false,
+    "liveServer.settings.root": "/src/main/resources/static"
+}

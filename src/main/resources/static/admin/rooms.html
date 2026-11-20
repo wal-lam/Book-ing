@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>열람실·좌석 관리 | Book-ing 관리자</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <header class="header is-admin">
+        <div class="header-inner">
+            <a class="header-logo" href="/admin/status.html">Book-ing<span class="header-admin-mark">관리자</span></a>
+            <nav class="header-nav" aria-label="관리자 메뉴">
+                <a href="/admin/status.html">실시간 현황</a>
+                <a href="/admin/rooms.html" aria-current="page">열람실·좌석 관리</a>
+                <a href="/admin/members.html">회원 관리</a>
+            </nav>
+            <div class="header-user">
+                <span id="header-name">관리자</span>
+                <button class="btn btn-outline btn-small" type="button" id="logout-btn">로그아웃</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 class="page-title">열람실·좌석 관리</h1>
+
+        <!-- 열람실 -->
+        <section class="admin-section">
+            <div class="section-head">
+                <h2 class="section-title">열람실</h2>
+                <button class="btn btn-primary btn-small" type="button" id="room-add-btn">열람실 등록</button>
+            </div>
+
+            <!-- 더미 데이터: 9단계에서 API 응답으로 채움 -->
+            <div class="table-wrap">
+                <table class="table">
+                    <caption class="blind">열람실 목록</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">이름</th>
+                            <th scope="col">위치</th>
+                            <th scope="col">운영시간</th>
+                            <th scope="col">좌석 수</th>
+                            <th scope="col">상태</th>
+                            <th scope="col">관리</th>
+                        </tr>
+                    </thead>
+                    <tbody id="room-list">
+                        <tr>
+                            <td data-label="이름">제1열람실</td>
+                            <td data-label="위치">중앙도서관 3층</td>
+                            <td data-label="운영시간">06:00 ~ 23:00</td>
+                            <td data-label="좌석 수">60석</td>
+                            <td data-label="상태"><span class="badge">운영 중</span></td>
+                            <td data-label="관리"><button class="btn btn-outline btn-small" type="button" data-room-id="1">수정</button></td>
+                        </tr>
+                        <tr>
+                            <td data-label="이름">제2열람실</td>
+                            <td data-label="위치">중앙도서관 4층</td>
+                            <td data-label="운영시간">09:00 ~ 22:00</td>
+                            <td data-label="좌석 수">40석</td>
+                            <td data-label="상태"><span class="badge">운영 중</span></td>
+                            <td data-label="관리"><button class="btn btn-outline btn-small" type="button" data-room-id="2">수정</button></td>
+                        </tr>
+                        <tr>
+                            <td data-label="이름">노트북열람실</td>
+                            <td data-label="위치">중앙도서관 2층</td>
+                            <td data-label="운영시간">09:00 ~ 21:00</td>
+                            <td data-label="좌석 수">30석</td>
+                            <td data-label="상태"><span class="badge badge-danger">운영 중지</span></td>
+                            <td data-label="관리"><button class="btn btn-outline btn-small" type="button" data-room-id="3">수정</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 좌석 -->
+        <section class="admin-section">
+            <div class="section-head">
+                <h2 class="section-title">좌석</h2>
+                <button class="btn btn-primary btn-small" type="button" id="seat-add-btn">좌석 추가</button>
+            </div>
+
+            <div class="admin-toolbar">
+                <label class="form-label" for="room-select">열람실</label>
+                <select class="form-select" id="room-select">
+                    <option value="1">제1열람실</option>
+                    <option value="2">제2열람실</option>
+                    <option value="3">노트북열람실</option>
+                </select>
+            </div>
+
+            <!-- 배치 미리보기: 좌석 위치(열, 행)를 눈으로 확인하는 용도 -->
+            <div class="seat-map-wrap">
+                <div class="seat-map" id="seat-map" data-mode="admin"></div>
+            </div>
+
+            <div class="table-wrap">
+                <table class="table">
+                    <caption class="blind">좌석 목록</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">좌석 번호</th>
+                            <th scope="col">열 (X)</th>
+                            <th scope="col">행 (Y)</th>
+                            <th scope="col">상태</th>
+                            <th scope="col">관리</th>
+                        </tr>
+                    </thead>
+                    <tbody id="seat-list">
+                        <tr>
+                            <td data-label="좌석 번호">A-1</td>
+                            <td data-label="열 (X)">1</td>
+                            <td data-label="행 (Y)">1</td>
+                            <td data-label="상태"><span class="badge">사용 가능</span></td>
+                            <td data-label="관리">
+                                <div class="table-actions">
+                                    <button class="btn btn-outline btn-small" type="button" data-seat-id="1">수정</button>
+                                    <button class="btn btn-danger btn-small" type="button" data-seat-id="1">사용 중지</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="좌석 번호">A-5</td>
+                            <td data-label="열 (X)">5</td>
+                            <td data-label="행 (Y)">1</td>
+                            <td data-label="상태"><span class="badge">사용 가능</span></td>
+                            <td data-label="관리">
+                                <div class="table-actions">
+                                    <button class="btn btn-outline btn-small" type="button" data-seat-id="5">수정</button>
+                                    <button class="btn btn-danger btn-small" type="button" data-seat-id="5">사용 중지</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="좌석 번호">A-8</td>
+                            <td data-label="열 (X)">9</td>
+                            <td data-label="행 (Y)">1</td>
+                            <td data-label="상태"><span class="badge badge-danger">사용 중지</span></td>
+                            <td data-label="관리">
+                                <div class="table-actions">
+                                    <button class="btn btn-outline btn-small" type="button" data-seat-id="6">수정</button>
+                                    <button class="btn btn-outline btn-small" type="button" data-seat-id="6">사용 재개</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="/js/dummy-seats.js"></script>
+
+    <!-- 열람실 등록·수정 팝업: 확인하려면 dialog 태그에 open 속성을 잠시 추가 -->
+    <dialog class="dialog" id="room-dialog">
+        <form id="room-form" method="dialog">
+            <h2 class="dialog-title" id="room-dialog-title">열람실 등록</h2>
+            <p class="dialog-desc">열람실 정보를 입력하세요.</p>
+
+            <div class="form-group">
+                <label class="form-label" for="room-name">이름</label>
+                <input class="form-input" type="text" id="room-name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="room-location">위치</label>
+                <input class="form-input" type="text" id="room-location" name="location" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="room-open">운영 시작</label>
+                    <input class="form-input" type="time" id="room-open" name="openTime" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="room-close">운영 종료</label>
+                    <input class="form-input" type="time" id="room-close" name="closeTime" required>
+                </div>
+            </div>
+            <label class="form-check">
+                <input type="checkbox" id="room-inactive" name="inactive">
+                운영 중지
+            </label>
+
+            <div class="dialog-actions">
+                <button class="btn btn-outline" type="button" id="room-dialog-cancel">취소</button>
+                <button class="btn btn-primary" type="submit">저장</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- 좌석 추가·수정 팝업 -->
+    <dialog class="dialog" id="seat-dialog">
+        <form id="seat-form" method="dialog">
+            <h2 class="dialog-title" id="seat-dialog-title">좌석 추가</h2>
+            <p class="dialog-desc">배치도에서 열(X)은 왼쪽부터, 행(Y)은 위쪽부터 1로 시작합니다.</p>
+
+            <div class="form-group">
+                <label class="form-label" for="seat-no">좌석 번호</label>
+                <input class="form-input" type="text" id="seat-no" name="seatNo" maxlength="10" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="seat-x">열 (X)</label>
+                    <input class="form-input" type="number" id="seat-x" name="posX" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="seat-y">행 (Y)</label>
+                    <input class="form-input" type="number" id="seat-y" name="posY" min="1" required>
+                </div>
+            </div>
+
+            <div class="dialog-actions">
+                <button class="btn btn-outline" type="button" id="seat-dialog-cancel">취소</button>
+                <button class="btn btn-primary" type="submit">저장</button>
+            </div>
+        </form>
+    </dialog>
+</body>
+</html>

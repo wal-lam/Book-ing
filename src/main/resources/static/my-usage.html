@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내 이용 현황 | Book-ing</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <a class="header-logo" href="/rooms.html">Book-ing</a>
+            <nav class="header-nav" aria-label="주 메뉴">
+                <a href="/rooms.html">열람실</a>
+                <a href="/my-usage.html" aria-current="page">내 이용 현황</a>
+                <a href="/history.html">이용 이력</a>
+            </nav>
+            <div class="header-user">
+                <span id="header-name">홍길동</span>
+                <button class="btn btn-outline btn-small" type="button" id="logout-btn">로그아웃</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 class="page-title">내 이용 현황</h1>
+
+        <!-- 더미 데이터: 5단계에서 /api/usages/current 응답으로 채움 -->
+        <section class="usage-card" id="usage-card">
+            <div class="usage-head">
+                <p class="usage-room" id="usage-room">제1열람실 · 중앙도서관 3층</p>
+                <h2 class="usage-seat" id="usage-seat">B-4 좌석</h2>
+            </div>
+
+            <div class="usage-remain">
+                <p>남은 시간</p>
+                <strong id="usage-remain">01:24:30</strong>
+            </div>
+
+            <dl class="usage-info">
+                <div><dt>시작 시각</dt><dd id="usage-start">13:00</dd></div>
+                <div><dt>종료 예정</dt><dd id="usage-end">15:00</dd></div>
+                <div><dt>연장 횟수</dt><dd id="usage-extend">0 / 2회</dd></div>
+                <div><dt>운영 종료</dt><dd id="usage-close">23:00</dd></div>
+            </dl>
+
+            <div class="usage-actions">
+                <p class="form-hint" id="extend-hint">연장은 종료 30분 전부터 가능합니다. (1회 2시간)</p>
+                <div class="usage-buttons">
+                    <button class="btn btn-primary" type="button" id="extend-btn" disabled>2시간 연장</button>
+                    <button class="btn btn-danger" type="button" id="return-btn">반납</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 이용 중인 좌석이 없을 때: usage-card 대신 표시 -->
+        <div class="empty-box" id="usage-empty" hidden>
+            <p>현재 이용 중인 좌석이 없습니다.</p>
+            <a class="btn btn-primary" href="/rooms.html">좌석 선택하기</a>
+        </div>
+    </main>
+</body>
+</html>

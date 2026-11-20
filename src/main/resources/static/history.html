@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이용 이력 | Book-ing</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <a class="header-logo" href="/rooms.html">Book-ing</a>
+            <nav class="header-nav" aria-label="주 메뉴">
+                <a href="/rooms.html">열람실</a>
+                <a href="/my-usage.html">내 이용 현황</a>
+                <a href="/history.html" aria-current="page">이용 이력</a>
+            </nav>
+            <div class="header-user">
+                <span id="header-name">홍길동</span>
+                <button class="btn btn-outline btn-small" type="button" id="logout-btn">로그아웃</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 class="page-title">이용 이력</h1>
+
+        <!-- 더미 데이터: 7단계에서 /api/usages/history 응답으로 채움 -->
+        <div class="table-wrap" id="history-wrap">
+            <table class="table">
+                <caption class="blind">좌석 이용 이력</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">이용일</th>
+                        <th scope="col">열람실</th>
+                        <th scope="col">좌석</th>
+                        <th scope="col">이용 시간</th>
+                        <th scope="col">연장</th>
+                        <th scope="col">상태</th>
+                    </tr>
+                </thead>
+                <tbody id="history-list">
+                    <tr>
+                        <td data-label="이용일">2026-11-20</td>
+                        <td data-label="열람실">제1열람실</td>
+                        <td data-label="좌석">B-4</td>
+                        <td data-label="이용 시간">13:00 ~ 이용 중</td>
+                        <td data-label="연장">0회</td>
+                        <td data-label="상태"><span class="badge badge-primary">이용 중</span></td>
+                    </tr>
+                    <tr>
+                        <td data-label="이용일">2026-11-19</td>
+                        <td data-label="열람실">제1열람실</td>
+                        <td data-label="좌석">A-7</td>
+                        <td data-label="이용 시간">09:10 ~ 13:05</td>
+                        <td data-label="연장">1회</td>
+                        <td data-label="상태"><span class="badge">반납</span></td>
+                    </tr>
+                    <tr>
+                        <td data-label="이용일">2026-11-18</td>
+                        <td data-label="열람실">제2열람실</td>
+                        <td data-label="좌석">C-2</td>
+                        <td data-label="이용 시간">18:00 ~ 22:00</td>
+                        <td data-label="연장">0회</td>
+                        <td data-label="상태"><span class="badge">자동 반납</span></td>
+                    </tr>
+                    <tr>
+                        <td data-label="이용일">2026-11-17</td>
+                        <td data-label="열람실">제1열람실</td>
+                        <td data-label="좌석">A-1</td>
+                        <td data-label="이용 시간">14:00 ~ 15:20</td>
+                        <td data-label="연장">0회</td>
+                        <td data-label="상태"><span class="badge badge-danger">강제 반납</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 이력이 없을 때: history-wrap 대신 표시 -->
+        <div class="empty-box" id="history-empty" hidden>
+            <p>이용 이력이 없습니다.</p>
+            <a class="btn btn-primary" href="/rooms.html">좌석 선택하기</a>
+        </div>
+    </main>
+</body>
+</html>

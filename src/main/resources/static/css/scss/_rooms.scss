@@ -1,0 +1,84 @@
+@use 'tokens' as *;
+
+.room-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.room-card {
+    display: block;
+    padding: 24px;
+    background: $color-surface;
+    border: 1px solid $color-border;
+    border-radius: 4px;
+
+    &:hover {
+        border-color: $color-primary;
+    }
+}
+
+// 운영 중지 열람실은 클릭할 수 없게 div로 그리고 흐리게 표시
+.room-card.is-inactive {
+    color: $color-text-sub;
+    background: $color-disabled;
+    border-style: dashed;
+    border-color: $color-text-sub;
+
+    &:hover {
+        border-color: $color-text-sub;
+    }
+}
+
+.room-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.room-name {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.room-info {
+    margin-top: 8px;
+    font-size: 14px;
+    color: $color-text-sub;
+
+    div {
+        display: flex;
+        gap: 8px;
+    }
+
+    dt {
+        width: 60px;
+    }
+}
+
+.room-remain {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid $color-border;
+    font-size: 14px;
+
+    strong {
+        font-size: 22px;
+        color: $color-primary;
+    }
+}
+
+.room-card.is-inactive .room-remain strong {
+    color: $color-text-sub;
+}
+
+@media (max-width: 768px) {
+    .room-list {
+        grid-template-columns: 1fr;
+    }
+
+    .room-card {
+        padding: 20px;
+    }
+}
