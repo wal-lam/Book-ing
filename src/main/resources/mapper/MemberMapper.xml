@@ -15,4 +15,11 @@
         VALUES (#{loginId}, #{password}, #{name}, #{email})
     </insert>
 
+    <select id="findByLoginId" resultType="com.readingroom.domain.Member">
+        SELECT id, login_id, password, name, email, role, suspended_until, created_at
+        FROM member
+        WHERE login_id = #{loginId}
+    </select>
+
 </mapper>
+

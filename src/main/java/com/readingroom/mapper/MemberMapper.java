@@ -10,4 +10,6 @@ public interface MemberMapper {
     int countByLoginId(String loginId);
 
     void insert(Member member);
+
+    Member findByLoginId(String loginId);
 }
