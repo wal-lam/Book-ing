@@ -22,7 +22,7 @@
                 <div class="form-group">
                     <label class="form-label" for="password">비밀번호</label>
                     <input class="form-input" type="password" id="password" name="password" autocomplete="new-password" aria-describedby="password-hint" required>
-                    <p class="form-hint" id="password-hint">8자 이상</p>
+                    <p class="form-hint" id="password-hint">8~20자</p>
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="passwordConfirm">비밀번호 확인</label>
@@ -37,7 +37,7 @@
                     <input class="form-input" type="email" id="email" name="email" autocomplete="email" required>
                 </div>
 
-                <p class="form-error" id="signup-error" hidden>이미 사용 중인 아이디입니다.</p>
+                <p class="form-error" id="signup-error" hidden></p>
 
                 <button class="btn btn-primary btn-block" type="submit">가입하기</button>
             </form>
@@ -47,5 +47,8 @@
             </p>
         </div>
     </main>
+
+    <script src="/js/common.js"></script>
+    <script src="/js/signup.js"></script>
 </body>
 </html>
