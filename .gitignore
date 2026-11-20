@@ -1,0 +1,14 @@
+# 빌드 결과물
+target/
+
+# DB 접속 정보 (커밋 금지)
+src/main/resources/application-local.yml
+
+# IDE 설정
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
