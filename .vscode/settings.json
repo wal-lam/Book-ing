@@ -8,5 +8,8 @@
         }
     ],
     "liveSassCompile.settings.generateMap": false,
-    "liveServer.settings.root": "/src/main/resources/static"
+    "liveServer.settings.root": "/src/main/resources/static",
+    "terminal.integrated.env.windows": {
+        "PATH": "${workspaceFolder}\\scripts;${env:PATH}"
+    }
 }
