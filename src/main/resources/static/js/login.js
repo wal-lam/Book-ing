@@ -21,7 +21,10 @@ loginForm.addEventListener('submit', async (e) => {
     });
 
     if (res.ok) {
-        location.href = '/rooms.html';
+        // 관리자는 관리자 화면으로, 일반 회원은 열람실 목록으로
+        const meRes = await fetch('/api/auth/me');
+        const me = await meRes.json();
+        location.href = me.role === 'ADMIN' ? '/admin/status.html' : '/rooms.html';
         return;
     }
 
