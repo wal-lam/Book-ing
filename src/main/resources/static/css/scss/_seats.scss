@@ -93,6 +93,7 @@
     }
 }
 
+// 사용 중은 일부러 흐리게 해서 빈 자리가 눈에 띄게 한다
 .seat-in-use {
     color: $seat-in-use-text;
     background: $seat-in-use;
@@ -107,18 +108,17 @@
     cursor: default;
 }
 
-// 사용 중지는 색이 아닌 사선 무늬로 구분
+// 사용 중지: 사용 중과 같은 바탕에 빨간 사선(/) 한 줄로 구분
 .seat-inactive {
-    color: $color-text-sub;
-    background: repeating-linear-gradient(
-        -45deg,
-        $seat-inactive,
-        $seat-inactive 4px,
-        $seat-inactive-line 4px,
-        $seat-inactive-line 5px
+    color: $seat-inactive-text;
+    background: linear-gradient(
+        to top left,
+        $seat-inactive calc(50% - 0.75px),
+        $seat-inactive-line calc(50% - 0.75px),
+        $seat-inactive-line calc(50% + 0.75px),
+        $seat-inactive calc(50% + 0.75px)
     );
-    border-style: dashed;
-    border-color: $color-text-sub;
+    border-color: $seat-inactive;
     cursor: not-allowed;
 }
 

@@ -640,24 +640,23 @@ body {
 }
 
 .seat-in-use {
-  color: #2f3338;
-  background: #aeb4bb;
-  border-color: #aeb4bb;
+  color: #b9bdc3;
+  background: #ececee;
+  border-color: #ececee;
   cursor: not-allowed;
 }
 
 .seat-mine {
-  color: #2b1a00;
-  background: #f0a030;
-  border: 2px solid #b86e00;
+  color: #2457c5;
+  background: #e4edfc;
+  border: 2px solid #3b6fd8;
   cursor: default;
 }
 
 .seat-inactive {
-  color: #666666;
-  background: repeating-linear-gradient(-45deg, #f4f5f7, #f4f5f7 4px, #d0d4d9 4px, #d0d4d9 5px);
-  border-style: dashed;
-  border-color: #666666;
+  color: #d0605a;
+  background: linear-gradient(to top left, #ececee calc(50% - 0.75px), #e3a29d calc(50% - 0.75px), #e3a29d calc(50% + 0.75px), #ececee calc(50% + 0.75px));
+  border-color: #ececee;
   cursor: not-allowed;
 }
 
